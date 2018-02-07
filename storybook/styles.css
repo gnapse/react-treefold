@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.unordered-list, .selector {
+  padding: 1em;
+  width: 300px;
+  height: 300px;
+  overflow: scroll;
+  border: 1px dotted black;
+}
+
+.table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.selector > div:nth-child(even),
+.table tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.selector > div:nth-child(odd),
+.table tbody tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+.selector > div {
+  cursor: pointer;
+}
+
+.selector > div.selected {
+  background-color: #666;
+  color: #fff;
+}
+
+.table th {
+  text-align: left;
+}
+
+.table .toggle-icon {
+  display: inline-block;
+  width: 20px;
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.empty {
+  color: #888;
+  font-style: italic;
+}
