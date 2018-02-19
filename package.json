@@ -1,45 +1,33 @@
 {
   "name": "react-treefold",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A renderless tree component for your hierarchical React views",
   "author": "Ernesto Garcia <gnapse@gmail.com> (http://github.com/gnapse)",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "files": ["css", "es", "lib", "umd"],
   "scripts": {
-    "clean": "rimraf lib es",
-    "build": "npm run clean && npm run build:es && npm run build:commonjs",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build": "nwb build-react-component --no-demo",
+    "clean": "nwb clean-module",
     "test": "jest --watch",
     "test:all": "jest",
-    "lint": "eslint src",
+    "lint": "eslint src tests demo",
+    "prettify": "prettier --write *.{md,js,json,css}",
     "precommit": "yarn lint && lint-staged",
-    "prettier": "prettier --write *.{md,js}",
     "storybook": "start-storybook -p 9001 -c storybook"
   },
   "lint-staged": {
-    "*.{js,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,md,json}": ["prettier --write", "git add"]
   },
-  "jest": {
-    "setupTestFrameworkScriptFile": "./tests/setup.js",
-    "transformIgnorePatterns": [
-      "/node_modules/",
-      "/lib/"
-    ]
-  },
+  "homepage": "https://github.com/gnapse/react-treefold#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/gnapse/react-treefold.git"
   },
-  "files": [
-    "lib",
-    "src",
-    "es"
-  ],
+  "bugs": {
+    "url": "https://github.com/gnapse/react-treefold/issues"
+  },
   "keywords": [
     "react",
     "reactjs",
@@ -52,46 +40,29 @@
     "accessibility",
     "WAI-ARIA"
   ],
-  "bugs": {
-    "url": "https://github.com/gnapse/react-treefold/issues"
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.x"
   },
-  "homepage": "https://github.com/gnapse/react-treefold#readme",
   "devDependencies": {
     "@storybook/react": "^3.3.13",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-jest": "^22.2.2",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^5.1.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.17.0",
+    "eslint": "^4.18.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.6.1",
     "husky": "^0.14.3",
-    "jest": "^22.2.2",
-    "lint-staged": "^6.1.0",
+    "jest": "^22.3.0",
+    "jest-enzyme": "^4.2.0",
+    "lint-staged": "^6.1.1",
+    "nwb": "0.21.x",
     "prettier": "^1.10.2",
-    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-test-renderer": "^16.2.0",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.55.5",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^8.3.0",
-    "rollup-plugin-node-resolve": "^3.0.2",
-    "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^3.0.0"
-  },
-  "peerDependencies": {
-    "prop-types": ">=15",
-    "react": ">=15"
+    "react-test-renderer": "^16.2.0"
   }
 }
