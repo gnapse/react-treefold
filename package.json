@@ -1,6 +1,6 @@
 {
   "name": "react-treefold",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A renderless tree component for your hierarchical React views",
   "author": "Ernesto Garcia <gnapse@gmail.com> (http://github.com/gnapse)",
   "license": "MIT",
