@@ -14,6 +14,8 @@ This is a component that abstracts away some of these repetitive details during 
 
 The component itself is stateless and controlled by default, so you can control any aspects of it from the outside. The expand/collapse state of each individual node is normally also controlled, but if no props for controlling it are specified, the component auto-manages the state for this on its own.
 
+You can see a live demo [here](http://treefold.netlify.com/).
+
 ## Installation
 
 This module is distributed via [npm](https://www.npmjs.com/) which is bundled with [node](https://nodejs.org) and should be installed as one of your project's `dependencies`:

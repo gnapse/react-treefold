@@ -15,7 +15,8 @@
     "lint": "eslint src tests demo",
     "prettify": "prettier --write *.{md,js,json,css}",
     "precommit": "yarn lint && lint-staged",
-    "storybook": "start-storybook -p 9001 -c storybook"
+    "storybook": "start-storybook -p 9001 -c storybook",
+    "storybook:build": "build-storybook -c storybook"
   },
   "lint-staged": {
     "*.{js,md,json}": ["prettier --write", "git add"]
