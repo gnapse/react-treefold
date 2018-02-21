@@ -7,8 +7,10 @@ import { SingleSelection } from './utils';
 import Table from './Table';
 import UnorderedList from './UnorderedList';
 import Selector from './Selector';
+import FamilyTree from './FamilyTree';
 
 storiesOf('Treefold', module)
+  .add('family tree', () => <FamilyTree />)
   .add('controlled', () => (
     <ToggleController>
       {({ isOn, onToggle }) => (
