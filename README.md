@@ -35,6 +35,7 @@ yarn add react-treefold
 Use the `Treefold` component by passing to it the hierarchical data (`nodes` prop) and how to render each node in the tree (`renderNode` prop):
 
 ```jsx
+import React from 'react';
 import Treefold from 'react-treefold';
 
 const MyTreeView = ({ nodes }) => (
@@ -49,7 +50,7 @@ const MyTreeView = ({ nodes }) => (
         getToggleProps,
         renderChildNodes,
       }) => (
-        <Fragment>
+        <>
           <div className="item" style={{ paddingLeft: `${level * 20}px` }}>
             {isFolder && (
               <span className="toggle-icon" {...getToggleProps()}>
@@ -62,7 +63,7 @@ const MyTreeView = ({ nodes }) => (
             {node.name}
           </div>
           {isFolder && renderChildNodes()}
-        </Fragment>
+        </>
       )}
     />
   </div>
