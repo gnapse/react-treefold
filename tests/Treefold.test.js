@@ -106,8 +106,8 @@ describe('Treefold', () => {
       });
 
       it('allows to expand and collapse nodes using the keyboard', () => {
-        testWithEvent(item => item.simulate('keydown', { charCode: 13 }));
-        testWithEvent(item => item.simulate('keydown', { charCode: 32 }));
+        testWithEvent(item => item.simulate('keydown', { keyCode: 13 }));
+        testWithEvent(item => item.simulate('keydown', { keyCode: 32 }));
       });
     };
 

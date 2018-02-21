@@ -35,7 +35,7 @@ const Node = props => {
             onToggleExpand(node);
           },
           onKeyDown(event) {
-            if (event.charCode === 32 || event.charCode === 13) {
+            if (event.keyCode === 32 || event.keyCode === 13) {
               event.preventDefault();
               event.stopPropagation();
               onToggleExpand(node);
