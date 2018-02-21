@@ -1,6 +1,5 @@
 import React from 'react';
 import Treefold from '../src';
-import { event } from './utils';
 import './styles.css';
 
 const UnorderedList = props => (
