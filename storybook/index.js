@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import Layout from './Layout';
 import ToggleController from '../src/ToggleController';
 import { geoData } from './data';
 import { SingleSelection } from './utils';
@@ -10,6 +11,7 @@ import Selector from './Selector';
 import FamilyTree from './FamilyTree';
 
 storiesOf('Treefold', module)
+  .addDecorator(Layout)
   .add('family tree', () => <FamilyTree />)
   .add('controlled', () => (
     <ToggleController>

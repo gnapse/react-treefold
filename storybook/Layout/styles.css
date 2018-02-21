@@ -1,0 +1,22 @@
+.layout {
+  padding: 10px;
+}
+
+.layout > header {
+  float: right;
+  padding: 10px;
+  margin-bottom: 50px;
+  color: #828282;
+  background-color: #f7f7f7;
+  border: 1px solid #c1c1c1;
+  width: calc(100% - 20px);
+}
+
+.layout > header > * {
+  display: inline-block;
+  width: 50%;
+}
+
+.layout > header > div {
+  text-align: right;
+}
