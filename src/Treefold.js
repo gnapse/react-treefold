@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import warning from 'warning';
 import Node from './Node';
 import ToggleController from './ToggleController';
 
@@ -19,6 +20,15 @@ class Treefold extends Component {
     getNodeChildren: item => item.children,
     renderEmptyFolder: () => null,
   };
+
+  constructor(props) {
+    super(props);
+    checkProps(props);
+  }
+
+  componentDidUpdate() {
+    checkProps(this.props);
+  }
 
   internalRender = ({ isOn, onToggle }) => {
     const {
@@ -55,6 +65,13 @@ class Treefold extends Component {
       </ToggleController>
     );
   }
+}
+
+function checkProps({ isNodeExpanded, onToggleExpand }) {
+  warning(
+    typeof isNodeExpanded === typeof onToggleExpand,
+    'Treefold: You must pass both isNodeExpanded and onToggleExpand, or none.'
+  );
 }
 
 export default Treefold;

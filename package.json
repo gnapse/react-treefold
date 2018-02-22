@@ -49,7 +49,9 @@
     "accessibility",
     "WAI-ARIA"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "warning": "^3.0.0"
+  },
   "peerDependencies": {
     "react": "16.x"
   },
