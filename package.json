@@ -6,7 +6,12 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "files": ["css", "es", "lib", "umd"],
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
   "scripts": {
     "build": "nwb build-react-component --no-demo",
     "clean": "nwb clean-module",
@@ -19,7 +24,10 @@
     "storybook:build": "build-storybook -c storybook"
   },
   "lint-staged": {
-    "*.{js,md,json}": ["prettier --write", "git add"]
+    "*.{js,md,json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "homepage": "https://github.com/gnapse/react-treefold#readme",
   "repository": {
