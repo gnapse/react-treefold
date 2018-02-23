@@ -137,9 +137,9 @@ The most important thing you have to tell to `Treefold` besides the actual tree 
 ```jsx
 <Treefold
   nodes={treeData}
-  renderNode={props => ({
+  renderNode={props => (
     /* you render the node here */
-  })}
+  )}
 />
 ```
 
