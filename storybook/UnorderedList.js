@@ -4,9 +4,8 @@ import './styles.css';
 
 const UnorderedList = props => (
   <ul className="unordered-list">
-    <Treefold
-      {...props}
-      render={({
+    <Treefold {...props}>
+      {({
         node,
         isFolder,
         isExpanded,
@@ -33,7 +32,7 @@ const UnorderedList = props => (
           )}
         </li>
       )}
-    />
+    </Treefold>
   </ul>
 );
 

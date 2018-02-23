@@ -7,7 +7,8 @@ import ToggleController from './ToggleController';
 class Treefold extends Component {
   static propTypes = {
     nodes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    render: PropTypes.func.isRequired,
+    render: PropTypes.func,
+    children: PropTypes.func,
     isNodeExpanded: PropTypes.func,
     onToggleExpand: PropTypes.func,
     getNodeId: PropTypes.func,
@@ -29,18 +30,21 @@ class Treefold extends Component {
   }
 
   internalRender = ({ isOn, onToggle }) => {
-    const { nodes, render, getNodeId, getNodeChildren } = this.props;
-    return nodes.map(node =>
-      React.createElement(Node, {
-        key: getNodeId(node),
-        node,
-        render,
-        getNodeId,
-        getNodeChildren,
-        isNodeExpanded: isOn,
-        onToggleExpand: onToggle,
-      })
-    );
+    const { nodes, getNodeId, getNodeChildren } = this.props;
+    const render = getRenderProp(this.props);
+    return render
+      ? nodes.map(node =>
+          React.createElement(Node, {
+            key: getNodeId(node),
+            node,
+            render,
+            getNodeId,
+            getNodeChildren,
+            isNodeExpanded: isOn,
+            onToggleExpand: onToggle,
+          })
+        )
+      : null;
   };
 
   render() {
@@ -58,10 +62,24 @@ class Treefold extends Component {
   }
 }
 
-function checkProps({ isNodeExpanded, onToggleExpand }) {
+function getRenderProp({ render, children }) {
+  return typeof render === 'function'
+    ? render
+    : typeof children === 'function' ? children : null;
+}
+
+function checkProps({ isNodeExpanded, onToggleExpand, render, children }) {
   warning(
     typeof isNodeExpanded === typeof onToggleExpand,
     'Treefold: You must pass both isNodeExpanded and onToggleExpand, or none.'
+  );
+  warning(
+    !(typeof render === 'function' && typeof children === 'function'),
+    'You should not use <Treefold render /> and <Treefold>{children}</Treefold> in the same Treefold component; `children` will be ignored'
+  );
+  warning(
+    !(typeof render !== 'function' && typeof children !== 'function'),
+    'You should specify one of <Treefold render /> or <Treefold>{children}</Treefold>; your component will render nothing unless you do so'
   );
 }
 

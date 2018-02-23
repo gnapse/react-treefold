@@ -51,45 +51,42 @@ const buildNodes = ({ idKey = 'id', childrenKey = 'children' } = {}) => [
 
 const defaultNodes = buildNodes();
 
-const Tree = props => (
-  <Treefold
-    {...props}
-    render={({
-      node,
-      isFolder,
-      isExpanded,
-      getToggleProps,
-      hasChildNodes,
-      renderChildNodes,
-    }) => (
-      <li>
-        {isFolder ? (
-          <a
-            id={node.id}
-            href="#"
-            {...getToggleProps()}
-            className={
-              isExpanded ? 'item folder expanded' : 'item folder collapsed'
-            }
-          >
-            {node.name}
-          </a>
-        ) : (
-          <span className="item leaf">{node.name}</span>
-        )}
-        {isExpanded && (
-          <ul>
-            {hasChildNodes ? (
-              renderChildNodes()
-            ) : (
-              <li className="empty">Empty node</li>
-            )}
-          </ul>
-        )}
-      </li>
+const Node = ({
+  node,
+  isFolder,
+  isExpanded,
+  getToggleProps,
+  hasChildNodes,
+  renderChildNodes,
+}) => (
+  <li>
+    {isFolder ? (
+      <a
+        id={node.id}
+        href="#"
+        {...getToggleProps()}
+        className={
+          isExpanded ? 'item folder expanded' : 'item folder collapsed'
+        }
+      >
+        {node.name}
+      </a>
+    ) : (
+      <span className="item leaf">{node.name}</span>
     )}
-  />
+    {isExpanded && (
+      <ul>
+        {hasChildNodes ? (
+          renderChildNodes()
+        ) : (
+          <li className="empty">Empty node</li>
+        )}
+      </ul>
+    )}
+  </li>
 );
+
+const Tree = props => <Treefold {...props} render={Node} />;
 
 const setup = ({ expanded = [], nodes = defaultNodes, ...props } = {}) => {
   const isNodeExpanded = item =>
@@ -172,6 +169,21 @@ describe('Treefold', () => {
         nodes,
       });
       expect(wrapper.find('.item')).toHaveLength(3);
+    });
+  });
+
+  describe('render prop', () => {
+    it('can be given via the children prop', () => {
+      const wrapper = mount(
+        <Treefold
+          nodes={defaultNodes}
+          onToggleExpand={() => {}}
+          isNodeExpanded={() => true}
+        >
+          {Node}
+        </Treefold>
+      );
+      expect(wrapper.find('.item')).toHaveLength(12);
     });
   });
 });

@@ -145,6 +145,8 @@ The most important thing you have to tell to `Treefold` besides the actual tree 
 />
 ```
 
+> You can also pass it as the `children` prop if you prefer to do things that way `<Treefold>{/* right here*/}</Treefold>`
+
 `Treefold` takes care of calling this function as it traverses the tree, and passes to it an object (`props` in the example just above) with the properties documented below:
 
 ### node
