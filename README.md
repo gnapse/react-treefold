@@ -69,7 +69,10 @@ const MyTreeView = ({ nodes }) => (
             (hasChildNodes ? (
               renderChildNodes()
             ) : (
-              <div className="empty" style={getStyle(level + 2)}>
+              <div
+                className="empty"
+                style={{ paddingLeft: `${(level + 1) * 20}px` }}
+              >
                 This folder is empty
               </div>
             ))}
