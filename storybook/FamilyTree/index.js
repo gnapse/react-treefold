@@ -16,7 +16,7 @@ const FamilyTree = () => (
     <ul>
       <Treefold
         nodes={familyTree}
-        renderNode={({
+        render={({
           node,
           isFolder,
           isExpanded,

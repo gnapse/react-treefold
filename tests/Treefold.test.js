@@ -54,11 +54,12 @@ const defaultNodes = buildNodes();
 const Tree = props => (
   <Treefold
     {...props}
-    renderNode={({
+    render={({
       node,
       isFolder,
       isExpanded,
       getToggleProps,
+      hasChildNodes,
       renderChildNodes,
     }) => (
       <li>
@@ -76,10 +77,17 @@ const Tree = props => (
         ) : (
           <span className="item leaf">{node.name}</span>
         )}
-        {isExpanded && <ul>{renderChildNodes()}</ul>}
+        {isExpanded && (
+          <ul>
+            {hasChildNodes ? (
+              renderChildNodes()
+            ) : (
+              <li className="empty">Empty node</li>
+            )}
+          </ul>
+        )}
       </li>
     )}
-    renderEmptyFolder={() => <li className="empty">Empty node</li>}
   />
 );
 

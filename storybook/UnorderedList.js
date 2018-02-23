@@ -6,11 +6,12 @@ const UnorderedList = props => (
   <ul className="unordered-list">
     <Treefold
       {...props}
-      renderNode={({
+      render={({
         node,
         isFolder,
         isExpanded,
         getToggleProps,
+        hasChildNodes,
         renderChildNodes,
       }) => (
         <li>
@@ -21,10 +22,17 @@ const UnorderedList = props => (
           ) : (
             node.name
           )}
-          {isExpanded && <ul>{renderChildNodes()}</ul>}
+          {isExpanded && (
+            <ul>
+              {hasChildNodes ? (
+                renderChildNodes()
+              ) : (
+                <li className="empty">Empty node</li>
+              )}
+            </ul>
+          )}
         </li>
       )}
-      renderEmptyFolder={() => <li className="empty">Empty node</li>}
     />
   </ul>
 );

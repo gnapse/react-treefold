@@ -7,18 +7,16 @@ import ToggleController from './ToggleController';
 class Treefold extends Component {
   static propTypes = {
     nodes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    render: PropTypes.func.isRequired,
     isNodeExpanded: PropTypes.func,
     onToggleExpand: PropTypes.func,
     getNodeId: PropTypes.func,
     getNodeChildren: PropTypes.func,
-    renderNode: PropTypes.func.isRequired,
-    renderEmptyFolder: PropTypes.func,
   };
 
   static defaultProps = {
     getNodeId: item => item.id,
     getNodeChildren: item => item.children,
-    renderEmptyFolder: () => null,
   };
 
   constructor(props) {
@@ -31,19 +29,12 @@ class Treefold extends Component {
   }
 
   internalRender = ({ isOn, onToggle }) => {
-    const {
-      nodes,
-      getNodeId,
-      getNodeChildren,
-      renderNode,
-      renderEmptyFolder,
-    } = this.props;
+    const { nodes, render, getNodeId, getNodeChildren } = this.props;
     return nodes.map(node =>
       React.createElement(Node, {
         key: getNodeId(node),
         node,
-        renderNode,
-        renderEmptyFolder,
+        render,
         getNodeId,
         getNodeChildren,
         isNodeExpanded: isOn,

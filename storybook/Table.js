@@ -17,12 +17,13 @@ const Table = props => (
     <tbody>
       <Treefold
         {...props}
-        renderNode={({
+        render={({
           node,
           level,
           isFolder,
           isExpanded,
           getToggleProps,
+          hasChildNodes,
           renderChildNodes,
         }) => (
           <Fragment key={node.id}>
@@ -38,15 +39,17 @@ const Table = props => (
               <td className="align-right">{lengthOf(node.name)}</td>
               <td className="align-right">{lengthOf(node.children)}</td>
             </tr>
-            {isFolder && renderChildNodes()}
+            {isExpanded &&
+              (hasChildNodes ? (
+                renderChildNodes()
+              ) : (
+                <tr className="empty">
+                  <td colSpan={3} style={getStyle(level + 2)}>
+                    This folder is empty
+                  </td>
+                </tr>
+              ))}
           </Fragment>
-        )}
-        renderEmptyFolder={({ level }) => (
-          <tr className="empty">
-            <td colSpan={3} style={getStyle(level + 1)}>
-              This folder is empty
-            </td>
-          </tr>
         )}
       />
     </tbody>

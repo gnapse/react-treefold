@@ -34,7 +34,7 @@ yarn add react-treefold
 
 ## Usage
 
-Use the `Treefold` component by passing to it the hierarchical data (`nodes` prop) and how to render each node in the tree (`renderNode` prop):
+Use the `Treefold` component by passing to it the hierarchical data (`nodes` prop) and how to render each node in the tree (`render` prop):
 
 ```jsx
 import React from 'react';
@@ -44,12 +44,13 @@ const MyTreeView = ({ nodes }) => (
   <div className="treeview">
     <Treefold
       nodes={nodes}
-      renderNode={({
+      render={({
         node,
         level,
         isFolder,
         isExpanded,
         getToggleProps,
+        hasChildNodes,
         renderChildNodes,
       }) => (
         <>
@@ -64,7 +65,14 @@ const MyTreeView = ({ nodes }) => (
             )}
             {node.name}
           </div>
-          {isFolder && renderChildNodes()}
+          {isExpanded &&
+            (hasChildNodes ? (
+              renderChildNodes()
+            ) : (
+              <div className="empty" style={getStyle(level + 2)}>
+                This folder is empty
+              </div>
+            ))}
         </>
       )}
     />
@@ -72,7 +80,7 @@ const MyTreeView = ({ nodes }) => (
 );
 ```
 
-The `renderNode` function receives the data for the node it needs to render, in addition to a set of extra props describing several different aspects of how the node needs to be rendered.
+The `render` function receives the data for the node it needs to render, in addition to a set of extra props describing several different aspects of how the node needs to be rendered.
 
 ## Treefold props
 
@@ -84,19 +92,13 @@ The list of root nodes in the tree. Each node in the list should be an object wi
 
 Note: the names of these node attributes is customizable. See [getNodeId](#getNodeId) and [getNodeChildren](#getNodeChildren).
 
-### renderNode
+### render
 
 > `function({/* see below */}): element` | required
 
 A function that renders a single node of the tree.
 
-This is called with an object. Read more about the properties of this object in the section "[Rendering a single node](#rendering-a-single-node)".
-
-### renderEmptyFolder
-
-> `function({ level: number }): element?` | optional, defaults to `() => null`
-
-A function that renders whatever needs to be rendered as content for an empty folder.
+This is called with an object argument. Read more about the properties of this object in the section "[Rendering a single node](#rendering-a-single-node)".
 
 ### isNodeExpanded
 
@@ -132,12 +134,12 @@ Note that there can be non-leaf nodes that have no child nodes. These are the on
 
 ## Rendering a single node
 
-The most important thing you have to tell to `Treefold` besides the actual tree data to render, is how to render it. You do so primarily by providing a prop called `renderNode` which receives all the information necessary about that node, and returns the jsx element that represents it.
+The most important thing you have to tell to `Treefold` besides the actual tree data to render, is how to render it. You do so primarily by providing a prop called `render` which receives all the information necessary about that node, and returns the jsx element that represents it.
 
 ```jsx
 <Treefold
   nodes={treeData}
-  renderNode={props => (
+  render={props => (
     /* you render the node here */
   )}
 />

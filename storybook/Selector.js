@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Treefold from '../src';
-import { getStyle, getIcon, event } from './utils';
+import { getStyle, getIcon } from './utils';
 
 const Selector = ({
   nodes,
@@ -10,12 +10,13 @@ const Selector = ({
   <div className="selector">
     <Treefold
       nodes={nodes}
-      renderNode={({
+      render={({
         node,
         level,
         isFolder,
         isExpanded,
         getToggleProps,
+        hasChildNodes,
         renderChildNodes,
       }) => (
         <Fragment>
@@ -33,13 +34,15 @@ const Selector = ({
             )}
             {node.name}
           </div>
-          {isFolder && renderChildNodes()}
+          {isExpanded &&
+            (hasChildNodes ? (
+              renderChildNodes()
+            ) : (
+              <div className="empty" style={getStyle(level + 2)}>
+                This folder is empty
+              </div>
+            ))}
         </Fragment>
-      )}
-      renderEmptyFolder={({ level }) => (
-        <div className="empty" style={getStyle(level + 1)}>
-          This folder is empty
-        </div>
       )}
     />
   </div>

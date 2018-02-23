@@ -5,8 +5,7 @@ const Node = props => {
   const {
     node,
     level,
-    renderNode,
-    renderEmptyFolder,
+    render,
     getNodeId,
     getNodeChildren,
     isNodeExpanded,
@@ -17,7 +16,7 @@ const Node = props => {
   const isFolder = Array.isArray(childNodes);
   const hasChildNodes = isFolder && childNodes.length > 0;
   const isExpanded = isFolder && isNodeExpanded(node);
-  return renderNode({
+  return render({
     ...extraProps,
     node,
     level,
@@ -45,17 +44,14 @@ const Node = props => {
       : null,
     renderChildNodes: isFolder
       ? () =>
-          isExpanded &&
-          (hasChildNodes
-            ? childNodes.map(childNode => (
-                <Node
-                  {...props}
-                  key={getNodeId(childNode)}
-                  node={childNode}
-                  level={level + 1}
-                />
-              ))
-            : renderEmptyFolder({ level: level + 1 }))
+          childNodes.map(childNode => (
+            <Node
+              {...props}
+              key={getNodeId(childNode)}
+              node={childNode}
+              level={level + 1}
+            />
+          ))
       : null,
   });
 };
@@ -63,8 +59,7 @@ const Node = props => {
 Node.propTypes = {
   node: PropTypes.object.isRequired,
   level: PropTypes.number,
-  renderNode: PropTypes.func.isRequired,
-  renderEmpty: PropTypes.func,
+  render: PropTypes.func.isRequired,
   getNodeId: PropTypes.func.isRequired,
   getNodeChildren: PropTypes.func.isRequired,
   isNodeExpanded: PropTypes.func.isRequired,
@@ -73,7 +68,6 @@ Node.propTypes = {
 
 Node.defaultProps = {
   level: 0,
-  renderEmptyFolder: () => null,
 };
 
 export default Node;
