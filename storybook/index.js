@@ -9,10 +9,12 @@ import Table from './Table';
 import UnorderedList from './UnorderedList';
 import Selector from './Selector';
 import FamilyTree from './FamilyTree';
+import Animated from './Animated';
 
 storiesOf('Treefold', module)
   .addDecorator(Layout)
   .add('family tree', () => <FamilyTree />)
+  .add('animated expand/collapse', () => <Animated nodes={geoData} />)
   .add('controlled', () => (
     <ToggleController>
       {({ isOn, onToggle }) => (

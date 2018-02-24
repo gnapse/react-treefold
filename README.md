@@ -212,7 +212,6 @@ You might think that this is something that `Treefold` should do itself. But if 
 
 * Ability to load children asynchronously.
 * Ability to control child nodes visibility via css instead of removing them from the DOM.
-* Ability to animate the expand/collapse action of child nodes.
 * Full WAI-ARIA compliance.
 * Improve customization to expand the use cases where this can be applied.
 
