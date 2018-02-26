@@ -10,11 +10,13 @@ import UnorderedList from './UnorderedList';
 import Selector from './Selector';
 import FamilyTree from './FamilyTree';
 import Animated from './Animated';
+import Async from './Async';
 
 storiesOf('Treefold', module)
   .addDecorator(Layout)
   .add('family tree', () => <FamilyTree />)
   .add('animated expand/collapse', () => <Animated nodes={geoData} />)
+  .add('async load child nodes', () => <Async />)
   .add('controlled', () => (
     <ToggleController>
       {({ isOn, onToggle }) => (

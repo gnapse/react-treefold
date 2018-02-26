@@ -2,6 +2,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+button {
+  padding: 3px 5px;
+}
+
+.toolbar {
+  margin-bottom: 1em;
+}
+
 .unordered-list, .selector {
   padding: 1em;
   width: 300px;
