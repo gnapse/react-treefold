@@ -1,0 +1,22 @@
+.dropdown-form label {
+  display: block;
+}
+
+.dropdown-form input, .dropdown {
+  width: 300px;
+}
+
+.dropdown {
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid black;
+}
+
+.dropdown .item {
+  cursor: default;
+}
+
+.dropdown .highlighted {
+  color: #fff;
+  background: #003366;
+}
