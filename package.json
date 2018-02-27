@@ -21,6 +21,7 @@
     "prettify": "prettier --write *.{md,js,json,css}",
     "precommit": "yarn lint && lint-staged",
     "storybook": "start-storybook -p 9001 -c storybook",
+    "storybook:setup": "cd storybook && yarn",
     "storybook:build": "build-storybook -c storybook"
   },
   "lint-staged": {
@@ -73,9 +74,7 @@
     "nwb": "0.21.x",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
-    "react-collapse": "^4.0.3",
     "react-dom": "^16.2.0",
-    "react-motion": "^0.5.2",
     "react-test-renderer": "^16.2.0"
   }
 }

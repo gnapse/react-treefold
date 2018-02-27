@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 
 const NODE_UNLOADED = undefined;
 const NODE_LOADING = 'loading';
@@ -9,11 +8,6 @@ const NODE_EXPANDED = 'expanded';
 const ASYNC_DELAY = 1000;
 
 export default class AsyncController extends Component {
-  static propTypes = {
-    getId: PropTypes.func,
-    children: PropTypes.func.isRequired,
-  };
-
   static defaultProps = {
     getId: node => node.name,
   };

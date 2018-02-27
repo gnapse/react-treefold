@@ -2,6 +2,8 @@
 /coverage
 /es
 /lib
-/node_modules
 /umd
 /storybook-static
+/storybook/yarn.lock
+/storybook/package-lock.json
+node_modules
